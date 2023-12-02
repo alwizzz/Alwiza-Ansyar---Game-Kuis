@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class Question : MonoBehaviour
+public class QuestionUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI questionText;

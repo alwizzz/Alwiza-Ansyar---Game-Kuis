@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AnswerOption : MonoBehaviour
+public class AnswerOptionUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI answerText;
     [SerializeField] private bool isCorrect;
 
-    [SerializeField] private FlashMessage flashMessage;
+    [SerializeField] private FlashMessageUI flashMessage;
 
     public void SetAnswerOption(string answerString, bool isCorrect)
     {

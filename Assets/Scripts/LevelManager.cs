@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [System.Serializable]
-    private struct QuestionData
-    {
-        public string questionString;
-        public Sprite hintSprite;
-
-        public string[] answerStringArray;
-        public bool[] isCorrectArray;
-    }
-
-    [SerializeField] private QuestionData[] questions = new QuestionData[0];
-    [SerializeField] private Question question;
-    [SerializeField] private AnswerOption[] answerOptions = new AnswerOption[0];
+    [SerializeField] private LevelPack levelPack;
     [SerializeField] private int questionIndex;
+
+    [SerializeField] private QuestionUI questionUI;
+    [SerializeField] private AnswerOptionUI[] answerOptionUis = new AnswerOptionUI[0];
 
 
     private void Start()
@@ -29,15 +20,16 @@ public class LevelManager : MonoBehaviour
     public void NextQuestion()
     {
         questionIndex++;
-        if(questionIndex >= questions.Length) { questionIndex = 0; }
+        if(questionIndex >= levelPack.totalQuestion) { questionIndex = 0; }
 
-        QuestionData data = questions[questionIndex];
-        question.SetQuestion($"Level {questionIndex+1}", data.questionString, data.hintSprite);
+        QuestionData data = levelPack.GetQuestionDataByIndex(questionIndex);
+        questionUI.SetQuestion($"Level {questionIndex+1}", data.questionString, data.hintSprite);
 
-        for(int i=0; i<answerOptions.Length; i++)
+        for(int i=0; i<answerOptionUis.Length; i++)
         {
-            AnswerOption option = answerOptions[i];
-            option.SetAnswerOption(data.answerStringArray[i], data.isCorrectArray[i]);
+            AnswerOptionUI optionUI = answerOptionUis[i];
+            QuestionData.AnswerOption option = data.answerOptions[i];
+            optionUI.SetAnswerOption(option.answerString, option.isCorrect);
         }
 
     }
