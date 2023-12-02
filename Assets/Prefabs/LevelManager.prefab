@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2554423751484423699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7776858181542711115}
+  - component: {fileID: 4120292459539260729}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7776858181542711115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554423751484423699}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4120292459539260729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554423751484423699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0f411d46f55634aa394ca5859a770e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questions:
+  - questionString: Warna dari mawar?
+    hintSprite: {fileID: 21300000, guid: 92afb74ffa0b9d74f80b8ba734934b15, type: 3}
+    answerStringArray:
+    - Cyan
+    - Merah
+    - Hijau
+    - Hitam
+    isCorrectArray: 00010000
+  - questionString: Warna dari matahari?
+    hintSprite: {fileID: 21300000, guid: 957f8b776fbb2d547a7027c2cdfafe48, type: 3}
+    answerStringArray:
+    - Kuning
+    - Hijau
+    - Abu-abu
+    - Pink
+    isCorrectArray: 01000000
+  - questionString: Warna dari langit?
+    hintSprite: {fileID: 21300000, guid: 992b7b8e8e830e149a9f0eb2994f6eaa, type: 3}
+    answerStringArray:
+    - Merah
+    - Ungu
+    - Hijau
+    - Biru
+    isCorrectArray: 00000001
+  question: {fileID: 0}
+  answerOptions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  questionIndex: 0
