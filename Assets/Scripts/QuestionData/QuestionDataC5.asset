@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cce317e0a10f38488dfad9b3c3c4d87, type: 3}
-  m_Name: QuestionData3
+  m_Name: QuestionDataC5
   m_EditorClassIdentifier: 
-  questionString: Warna dari langit
-  hintSprite: {fileID: 21300000, guid: 992b7b8e8e830e149a9f0eb2994f6eaa, type: 3}
+  questionString: Map apa ini
+  hintSprite: {fileID: 21300000, guid: e55c54b9908ca7147a68e39eeac318aa, type: 3}
   answerOptions:
-  - answerString: Merah
+  - answerString: Cache
     isCorrect: 0
-  - answerString: Ungu
+  - answerString: Office
     isCorrect: 0
-  - answerString: Hijau
+  - answerString: Train
     isCorrect: 0
-  - answerString: Biru
+  - answerString: Inferno
     isCorrect: 1

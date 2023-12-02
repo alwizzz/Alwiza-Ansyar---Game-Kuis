@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cce317e0a10f38488dfad9b3c3c4d87, type: 3}
-  m_Name: QuestionData2
+  m_Name: QuestionDataC4
   m_EditorClassIdentifier: 
-  questionString: Warna dari matahari?
-  hintSprite: {fileID: 21300000, guid: 957f8b776fbb2d547a7027c2cdfafe48, type: 3}
+  questionString: Map apa ini
+  hintSprite: {fileID: 21300000, guid: dd15ec01ff7f6174785e453072304347, type: 3}
   answerOptions:
-  - answerString: Kuning
+  - answerString: Train
+    isCorrect: 0
+  - answerString: Inferno
+    isCorrect: 0
+  - answerString: Overpass
+    isCorrect: 0
+  - answerString: Vertigo
     isCorrect: 1
-  - answerString: Hijau
-    isCorrect: 0
-  - answerString: Abu-abu
-    isCorrect: 0
-  - answerString: Pink
-    isCorrect: 0
