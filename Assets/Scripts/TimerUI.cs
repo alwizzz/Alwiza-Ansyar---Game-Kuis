@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Timer : MonoBehaviour
+public class TimerUI : MonoBehaviour
 {
     [SerializeField] private float duration;
     [SerializeField] private float counter;
@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     }
 
     [SerializeField] private Slider timerSlider;
-    [SerializeField] private FlashMessage flashMessage;
+    [SerializeField] private FlashMessageUI flashMessage;
 
     private void Start()
     {
