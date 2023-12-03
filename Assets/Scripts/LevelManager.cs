@@ -38,4 +38,13 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void SaveProgress()
+    {
+        playerProgressData.Save();
+    }
+    public void LoadProgress()
+    {
+        playerProgressData.Load();
+    }
+
 }
