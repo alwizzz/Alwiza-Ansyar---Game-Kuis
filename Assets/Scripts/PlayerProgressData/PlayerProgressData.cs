@@ -19,6 +19,7 @@ public class PlayerProgressData : ScriptableObject
 
     public ProgressData data = new ProgressData();
     [SerializeField] private string fileName;
+    [SerializeField] private bool usingBinaryFormatter;
     readonly private string DIR = Application.dataPath + "/Temporary/";
     private string path;
 
@@ -38,10 +39,67 @@ public class PlayerProgressData : ScriptableObject
         }
     }
 
+
+
+    public bool Load()
+    {
+        bool isSuccess;
+        FileStream fileStream = File.Open(path, FileMode.Open);
+
+        if(usingBinaryFormatter)
+        {
+            isSuccess = LoadByBinaryFormatter(fileStream);  
+        } else
+        {
+            isSuccess = LoadByBinaryReader(fileStream);   
+        }
+
+        Debug.Log("file loadeded " + (isSuccess ? "successfully" : "in failure") + ", path: " + path);
+        fileStream.Dispose();
+        return isSuccess;
+    }
+
+    private bool LoadByBinaryFormatter(FileStream fileStream)
+    {
+        try
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            data = (ProgressData)formatter.Deserialize(fileStream);
+
+
+            Debug.Log("File loaded successfully");
+            return true;
+        }
+        catch (System.Exception e)
+        {
+            Debug.Log(e.Message);
+            return false;
+        }
+    }
+
+    private bool LoadByBinaryReader(FileStream fileStream)
+    {
+        BinaryReader reader = new BinaryReader(fileStream);
+
+        if (fileStream.Length == 0) { Debug.Log("file is empty"); return false; }
+        data.coins = reader.ReadInt32();
+        while (reader.PeekChar() != -1)
+        {
+            string key = reader.ReadString();
+            int value = reader.ReadInt32();
+
+            data.levelProgresses.Add(key, value);
+        }
+
+        reader.Dispose();
+        return true;
+    }
+
     public void Save()
     {
         // dummy data
-        if(data.levelProgresses == null)
+        if (data.levelProgresses == null)
         {
             data.levelProgresses = new();
         }
@@ -49,52 +107,31 @@ public class PlayerProgressData : ScriptableObject
         FileStream fileStream = File.Open(path, FileMode.Open);
         fileStream.Flush();
 
-        //// ==> By BinaryFormatter
-        //BinaryFormatter formatter = new BinaryFormatter();
-        //data.coins = 200;
-        //data.levelProgresses.Add("LevelPackA", 3);
-        //data.levelProgresses.Add("LevelPackB", 5);
+        if (usingBinaryFormatter)
+        {
+            SaveByBinaryFormatter(fileStream);
+        }
+        else
+        {
+            SaveByBinaryWriter(fileStream);
+        }
 
-        //formatter.Serialize(fileStream, data);
-
-        // ==> By BinaryWriter
-        TryBinaryWriter(fileStream);
 
         fileStream.Dispose();
         Debug.Log($"File saved at : {path}");
     }
 
-    public bool Load()
+    private void SaveByBinaryFormatter(FileStream fileStream)
     {
-        bool isSuccess;
-        FileStream fileStream = File.Open(path, FileMode.Open);
+        BinaryFormatter formatter = new BinaryFormatter();
+        data.coins = 200;
+        data.levelProgresses.Add("LevelPackA", 3);
+        data.levelProgresses.Add("LevelPackB", 5);
 
-        //// ==> By BinaryFormatter
-        //try
-        //{
-        //    BinaryFormatter formatter = new BinaryFormatter();
-
-        //    data = (ProgressData)formatter.Deserialize(fileStream);
-
-
-        //    Debug.Log("File loaded successfully");
-        //    isSuccess = true;
-        //}
-        //catch (System.Exception e)
-        //{
-        //    Debug.Log(e.Message);
-        //    isSuccess = false;
-        //}
-
-        // ==> By BinaryReader
-        isSuccess = TryBinaryReader(fileStream);
-        Debug.Log("file loadeded " + (isSuccess ? "successfully" : "in failure"));
-
-        fileStream.Dispose();
-        return isSuccess;
+        formatter.Serialize(fileStream, data);
     }
 
-    private void TryBinaryWriter(FileStream fileStream)
+    private void SaveByBinaryWriter(FileStream fileStream)
     {
         BinaryWriter writer = new BinaryWriter(fileStream);
 
@@ -108,68 +145,5 @@ public class PlayerProgressData : ScriptableObject
         writer.Dispose();
     }
 
-    private bool TryBinaryReader(FileStream fileStream)
-    {
-        BinaryReader reader = new BinaryReader(fileStream);
 
-        //if (fileStream.Length == 0) { Debug.Log("fail1"); return false; }
-        //if(reader.PeekChar() == -1) { return false; }
-        data.coins = reader.ReadInt32();
-
-        //if (reader.PeekChar() == -1) { Debug.Log("fail2"); return false; }
-        while (reader.PeekChar() != -1)
-        {
-            string key = reader.ReadString();
-
-            //if (reader.PeekChar() == -1) { Debug.Log("fail3"); return false; }
-            int value = reader.ReadInt32();
-
-            data.levelProgresses.Add(key, value);
-        }
-
-        ////if (fileStream.Length == 0) { Debug.Log("fail1"); return false; }
-        //if(reader.PeekChar() == -1) { reader.Dispose(); return false; }
-        //data.coins = reader.ReadInt32();
-
-        ////if (reader.PeekChar() == -1) { Debug.Log("fail2"); return false; }
-        //while (reader.PeekChar() != -1)
-        //{
-        //    string key = reader.ReadString();
-
-        //    //if (reader.PeekChar() == -1) { Debug.Log("fail3"); return false; }
-        //    int value = reader.ReadInt32();
-
-        //    data.levelProgresses.Add(key, value);
-        //}
-
-        //char[] charBuffer = new char[10];
-        //int bytesRead = reader.Read(charBuffer, 0, 1);
-
-        //if(bytesRead <= 0)
-        //{
-        //    Debug.Log("fail");
-        //    return false;
-        //}
-
-        //data.coins = reader.ReadInt32();
-
-
-        //if (data.levelProgresses == null)
-        //{
-        //    data.levelProgresses = new();
-        //}
-
-
-        //string key; int value;
-        //key = reader.ReadString();
-        //value = reader.ReadInt32();
-        //data.levelProgresses.Add(key, value);
-
-        //key = reader.ReadString();
-        //value = reader.ReadInt32();
-        //data.levelProgresses.Add(key, value);
-
-        reader.Dispose();
-        return true;
-    }
 }

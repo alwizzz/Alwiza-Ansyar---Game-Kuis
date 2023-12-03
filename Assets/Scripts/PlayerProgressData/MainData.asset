@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     coins: 200
-  fileName: progress.txt
+  fileName: data.txt
