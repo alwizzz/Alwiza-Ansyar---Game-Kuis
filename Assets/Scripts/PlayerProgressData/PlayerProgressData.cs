@@ -10,7 +10,7 @@ using UnityEngine;
 )]
 public class PlayerProgressData : ScriptableObject
 {
-    [System.Serializable]
+    [System.Serializable] 
     public struct ProgressData
     {
         public int coins;
