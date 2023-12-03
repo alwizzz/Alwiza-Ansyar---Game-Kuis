@@ -44,35 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0f411d46f55634aa394ca5859a770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questions:
-  - questionString: Warna dari mawar?
-    hintSprite: {fileID: 21300000, guid: 92afb74ffa0b9d74f80b8ba734934b15, type: 3}
-    answerStringArray:
-    - Cyan
-    - Merah
-    - Hijau
-    - Hitam
-    isCorrectArray: 00010000
-  - questionString: Warna dari matahari?
-    hintSprite: {fileID: 21300000, guid: 957f8b776fbb2d547a7027c2cdfafe48, type: 3}
-    answerStringArray:
-    - Kuning
-    - Hijau
-    - Abu-abu
-    - Pink
-    isCorrectArray: 01000000
-  - questionString: Warna dari langit?
-    hintSprite: {fileID: 21300000, guid: 992b7b8e8e830e149a9f0eb2994f6eaa, type: 3}
-    answerStringArray:
-    - Merah
-    - Ungu
-    - Hijau
-    - Biru
-    isCorrectArray: 00000001
-  question: {fileID: 0}
-  answerOptions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  levelPack: {fileID: 11400000, guid: 4ec256b0a5a493d40bb28e0c5badadb6, type: 2}
   questionIndex: 0
+  questionUI: {fileID: 0}
+  answerOptionUis:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerProgressData: {fileID: 11400000, guid: 7991192028377684ea3b92c901313f9a, type: 2}

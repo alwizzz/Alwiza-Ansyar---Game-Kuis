@@ -10,9 +10,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private QuestionUI questionUI;
     [SerializeField] private AnswerOptionUI[] answerOptionUis = new AnswerOptionUI[0];
 
+    [SerializeField] private PlayerProgressData playerProgressData;
+
 
     private void Start()
     {
+        playerProgressData.Save();
+
         questionIndex = -1;
         NextQuestion();
     }
