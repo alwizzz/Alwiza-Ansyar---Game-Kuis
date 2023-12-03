@@ -22,23 +22,24 @@ public class PlayerProgressData : ScriptableObject
     readonly private string DIR = Application.dataPath + "/Temporary/";
     private string path;
 
-
-    public void Save()
+    public void Setup()
     {
         path = DIR + fileName;
-
         if (!Directory.Exists(DIR))
         {
             Directory.CreateDirectory(DIR);
             Debug.Log($"Directory created : {DIR}");
         }
 
-        if(!File.Exists(path))
+        if (!File.Exists(path))
         {
             File.Create(path).Dispose();
             Debug.Log($"File created : {path}");
         }
+    }
 
+    public void Save()
+    {
         // dummy data
         data.coins = 200;
         if(data.levelProgresses == null)
@@ -48,15 +49,6 @@ public class PlayerProgressData : ScriptableObject
         data.levelProgresses.Add("LevelPackA", 3);
         data.levelProgresses.Add("LevelPackB", 5);
 
-        //string content = "";
-        //content += data.coins.ToString() + "\n";
-        //foreach(KeyValuePair<string, int> kvp in data.levelProgresses)
-        //{
-        //    content += kvp.Key + "-" + kvp.Value.ToString() + ";";
-        //}
-
-        //File.WriteAllText(path, content);
-
 
         FileStream fileStream = File.Open(path, FileMode.Open);
         BinaryFormatter formatter = new BinaryFormatter();
@@ -64,11 +56,31 @@ public class PlayerProgressData : ScriptableObject
         fileStream.Flush();
         formatter.Serialize(fileStream, data);
 
+        fileStream.Dispose();
         Debug.Log($"File saved at : {path}");
     }
 
-    public void Load()
+    public bool Load()
     {
+        FileStream fileStream = File.Open(path, FileMode.Open);
+        try
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            data = (ProgressData)formatter.Deserialize(fileStream);
+
+            fileStream.Dispose();
+
+            Debug.Log("File loaded successfully");
+            return true;
+        } catch(System.Exception e)
+        {
+            Debug.Log(e.Message);
+            fileStream.Dispose();
+            return false;
+        } 
+
+
 
     }
 }

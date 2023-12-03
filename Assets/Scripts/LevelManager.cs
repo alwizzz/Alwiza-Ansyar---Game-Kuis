@@ -12,10 +12,17 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private PlayerProgressData playerProgressData;
 
+    private void Awake()
+    {
+        playerProgressData.Setup();    
+    }
 
     private void Start()
     {
-        playerProgressData.Save();
+        if(!playerProgressData.Load())
+        {
+            playerProgressData.Save();
+        }
 
         questionIndex = -1;
         NextQuestion();
