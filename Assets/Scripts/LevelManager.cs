@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private PlayerProgressData playerProgressData;
 
-    [Header("Caches")]
-    [SerializeField] private SceneLoader sceneLoader;
+    //[Header("Caches")]
+    //[SerializeField] private SceneLoader sceneLoader;
 
     private void Awake()
     {
@@ -63,6 +63,17 @@ public class LevelManager : MonoBehaviour
 
     private void ReturnToChooseLevelMenu()
     {
+        /*
+         * saya prefer untuk mendapatkan reference SceneLoader via FindObjectOfType() 
+         * karena reference sangat jarang digunakan di lifetime scene
+         */
+        var sceneLoader = FindObjectOfType<SceneLoader>();
+        if (sceneLoader == null)
+        {
+            print("Error: SceneLoader not found");
+            return;
+        }
+
         sceneLoader.LoadChooseLevelMenuScene();
     }
 

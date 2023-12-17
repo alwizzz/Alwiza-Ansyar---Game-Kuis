@@ -19,4 +19,5 @@ public class QuestionData : ScriptableObject
     public Sprite hintSprite;
 
     public AnswerOption[] answerOptions = new AnswerOption[0];
+    public int index;
 }

@@ -12,20 +12,17 @@ public class LevelPackOptionUI : MonoBehaviour
     [SerializeField] private Button button;
 
     // Event Management
-    public static event System.Action<LevelPack> OnClickingLevelPackOptionButton;
+    public static event System.Action<LevelPack> OnClick;
 
-    private void Awake()
+
+    private void Start()
     {
         /* 
          * saya prefer mendapatkan komponen button menggunakan GetComponent
          * karena semua gameobject dari script ini adalah sebuah UI Button
          */
-
         button = GetComponent<Button>();
-    }
 
-    private void Start()
-    {
         SubscribeEvents();
     }
 
@@ -52,6 +49,6 @@ public class LevelPackOptionUI : MonoBehaviour
 
     private void Click()
     {
-        OnClickingLevelPackOptionButton?.Invoke(levelPack);
+        OnClick?.Invoke(levelPack);
     }
 }

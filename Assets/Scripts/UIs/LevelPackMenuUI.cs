@@ -45,11 +45,11 @@ public class LevelPackMenuUI : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        LevelPackOptionUI.OnClickingLevelPackOptionButton += SetupQuestionMenu;
+        LevelPackOptionUI.OnClick += SetupQuestionMenu;
     }
     private void UnsubscribeEvents()
     {
-        LevelPackOptionUI.OnClickingLevelPackOptionButton -= SetupQuestionMenu;
+        LevelPackOptionUI.OnClick -= SetupQuestionMenu;
     }
 
 

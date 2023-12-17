@@ -23,3 +23,4 @@ MonoBehaviour:
     isCorrect: 0
   - answerString: Vertigo
     isCorrect: 1
+  index: 3

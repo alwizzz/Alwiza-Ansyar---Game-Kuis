@@ -8,6 +8,10 @@ public class QuestionMenuUI : MonoBehaviour
     [SerializeField] private QuestionOptionUI questionOptionPrefab;
     [SerializeField] private RectTransform buttonsParent;
 
+    private void Start()
+    {
+        SubscribeEvents();
+    }
 
     public void GenerateOptionButtons(LevelPack levelPack)
     {
@@ -35,5 +39,33 @@ public class QuestionMenuUI : MonoBehaviour
         {
             Destroy(buttonsParent.GetChild(i).gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeEvents();
+    }
+
+    private void SubscribeEvents()
+    {
+        QuestionOptionUI.OnClick += LoadGame;
+    }
+    private void UnsubscribeEvents()
+    {
+        QuestionOptionUI.OnClick -= LoadGame;
+    }
+
+    private void LoadGame(int index)
+    {
+        // TODO: carry on the index to the GameScene
+
+        var sceneLoader = FindObjectOfType<SceneLoader>();
+        if (sceneLoader == null)
+        {
+            print("Error: SceneLoader not found");
+            return;
+        }
+
+        sceneLoader.LoadGameScene();
     }
 }
