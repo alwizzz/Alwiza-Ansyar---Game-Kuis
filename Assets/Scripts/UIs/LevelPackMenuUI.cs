@@ -21,13 +21,24 @@ public class LevelPackMenuUI : MonoBehaviour
 
         SubscribeEvents();
 
-        if(transitoryDataRef.onLosingFromGame)
+        if (transitoryDataRef.onLosingFromGame )
         {
-            // force choosing a level pack via script
-            SetupQuestionMenu(transitoryDataRef.currentLevelPack);
+            if(transitoryDataRef.currentLevelPack == null)
+            {
+                print("attempted to do onLosingFromGame mechanic but the currentLevelPack is null, canceled");
+            } else
+            {
+                print("attempted to do onLosingFromGame mechanic, succeed");
+
+                // force choosing a level pack via script
+                transitoryDataRef.onLosingFromGame = false;
+                SetupQuestionMenu(transitoryDataRef.currentLevelPack);
+            }
+        } else
+        {
+            questionMenu.gameObject.SetActive(false);
         }
 
-        transitoryDataRef.Reset();
     }
 
     private void GenerateOptionButtons()

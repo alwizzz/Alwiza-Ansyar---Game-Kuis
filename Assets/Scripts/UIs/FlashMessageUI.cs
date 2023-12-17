@@ -42,6 +42,10 @@ public class FlashMessageUI : MonoBehaviour
     private void ShowTimeRunsOutMessage()
     {
         Message = "Waktu Habis";
+
+        buttonsOnCorrectAnswer.SetActive(false);
+        buttonsOnWrongAnswer.SetActive(true);
+
         gameObject.SetActive(true);
     }
 

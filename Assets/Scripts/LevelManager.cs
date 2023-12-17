@@ -98,6 +98,12 @@ public class LevelManager : MonoBehaviour
         playerProgressData.data.coins += coinReward;
     }
 
+    public void ResetLevel()
+    {
+        questionIndex = -1;
+        NextQuestion();
+    }
+
 
     private void OnApplicationQuit()
     {
