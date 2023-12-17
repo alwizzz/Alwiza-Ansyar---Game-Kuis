@@ -25,6 +25,7 @@ public class AnswerOptionUI : MonoBehaviour
         //print($"Jawaban anda adalah {answerText.text} ({isCorrect})");
         //flashMessage.Message = $"Jawaban anda adalah {answerText.text} ({isCorrect})";
 
+        if (isCorrect) { FindObjectOfType<LevelManager>().AddCoinReward(); }
         OnChoosingAnswer?.Invoke(answerText.text, isCorrect);
     }
 }

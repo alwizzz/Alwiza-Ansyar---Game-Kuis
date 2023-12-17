@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private AnswerOptionUI[] answerOptionUis = new AnswerOptionUI[0];
 
     [SerializeField] private PlayerProgressData playerProgressData;
+    [SerializeField] private int coinReward;
 
     //[Header("Caches")]
     //[SerializeField] private SceneLoader sceneLoader;
@@ -91,10 +92,18 @@ public class LevelManager : MonoBehaviour
         sceneLoader.LoadChooseLevelMenuScene();
     }
 
+    public void AddCoinReward()
+    {
+        print("hoy");
+        playerProgressData.data.coins += coinReward;
+    }
+
 
     private void OnApplicationQuit()
     {
         transitoryDataRef.Reset();
     }
+
+
 
 }

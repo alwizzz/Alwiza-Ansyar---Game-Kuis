@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MainData
   m_EditorClassIdentifier: 
   data:
-    coins: 256
+    coins: 220
   fileName: data.txt
   usingBinaryFormatter: 1

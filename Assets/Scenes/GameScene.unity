@@ -2140,6 +2140,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2032d96b42397a843a0f2bf2bfac88ca, type: 2}
     - target: {fileID: 4120292459539260729, guid: 62c52f8ecbbd2ca4ca9563a0fe903191, type: 3}
+      propertyPath: coinReward
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120292459539260729, guid: 62c52f8ecbbd2ca4ca9563a0fe903191, type: 3}
       propertyPath: questionUI
       value: 
       objectReference: {fileID: 2552227055455977844}
