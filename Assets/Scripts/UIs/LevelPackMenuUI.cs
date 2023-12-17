@@ -24,9 +24,10 @@ public class LevelPackMenuUI : MonoBehaviour
         if(transitoryDataRef.onLosingFromGame)
         {
             // force choosing a level pack via script
-            transitoryDataRef.onLosingFromGame = false;
             SetupQuestionMenu(transitoryDataRef.currentLevelPack);
         }
+
+        transitoryDataRef.Reset();
     }
 
     private void GenerateOptionButtons()
@@ -67,5 +68,11 @@ public class LevelPackMenuUI : MonoBehaviour
         questionMenu.GenerateOptionButtons(levelPack);
 
         gameObject.SetActive(false);
+    }
+
+
+    private void OnApplicationQuit()
+    {
+        transitoryDataRef.Reset();
     }
 }

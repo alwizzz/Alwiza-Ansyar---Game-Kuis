@@ -91,4 +91,10 @@ public class LevelManager : MonoBehaviour
         sceneLoader.LoadChooseLevelMenuScene();
     }
 
+
+    private void OnApplicationQuit()
+    {
+        transitoryDataRef.Reset();
+    }
+
 }

@@ -17,4 +17,11 @@ public class TransitoryData : ScriptableObject
     {
         onLosingFromGame = value;
     }
+
+    public void Reset()
+    {
+        currentLevelPack = null;
+        currentQuestionIndex = 0;
+        onLosingFromGame = false;
+    }
 }
