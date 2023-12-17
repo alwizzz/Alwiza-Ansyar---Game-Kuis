@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private PlayerProgressData playerProgressData;
 
+    [Header("Caches")]
+    [SerializeField] private SceneLoader sceneLoader;
+
     private void Awake()
     {
         playerProgressData.Setup();    
@@ -31,7 +34,11 @@ public class LevelManager : MonoBehaviour
     public void NextQuestion()
     {
         questionIndex++;
-        if(questionIndex >= levelPack.totalQuestion) { questionIndex = 0; }
+        if(questionIndex >= levelPack.totalQuestion) 
+        {
+            ReturnToChooseLevelMenu();
+            return;
+        }
 
         QuestionData data = levelPack.GetQuestionDataByIndex(questionIndex);
         questionUI.SetQuestion($"Level {questionIndex+1}", data.questionString, data.hintSprite);
@@ -52,6 +59,11 @@ public class LevelManager : MonoBehaviour
     public void LoadProgress()
     {
         playerProgressData.Load();
+    }
+
+    private void ReturnToChooseLevelMenu()
+    {
+        sceneLoader.LoadChooseLevelMenuScene();
     }
 
 }

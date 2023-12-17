@@ -10,7 +10,7 @@ public class SceneLoader : MonoBehaviour
     /*
      * NOTE: saya prefer menyimpan nama scene dalam cache variables
      * daripada harus memasukkan nama scene setiap kali akan melakukan
-     * Load Scene
+     * Load Scene karna terlalu hardcoded dan redundant
      */
 
     [SerializeField] string nameOfStartMenuScene;
