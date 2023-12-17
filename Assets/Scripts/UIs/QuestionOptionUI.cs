@@ -9,8 +9,9 @@ public class QuestionOptionUI : MonoBehaviour
     [SerializeField] private QuestionData questionData;
     [SerializeField] private int orderIndex;
 
-    private void Setup()
+    public void Setup(QuestionData data)
     {
-        optionText.text = questionData.name;
+        questionData = data;
+        optionText.text = data.name;
     }
 }
