@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6008ceaa6df3204eb96093c60adff10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitoryDataReference: {fileID: 11400000, guid: 6486058642db0524e906edf02611007e, type: 2}
   currentSelectedLevelPack: {fileID: 0}
   questionOptionPrefab: {fileID: 3660926786129140505, guid: 96b3827e854024e44a2035c6a6783d33, type: 3}
   buttonsParent: {fileID: 1021163869}

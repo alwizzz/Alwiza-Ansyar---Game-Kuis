@@ -1796,6 +1796,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1287041797}
     - target: {fileID: 4120292459539260729, guid: 62c52f8ecbbd2ca4ca9563a0fe903191, type: 3}
+      propertyPath: transitoryDataReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 6486058642db0524e906edf02611007e, type: 2}
+    - target: {fileID: 4120292459539260729, guid: 62c52f8ecbbd2ca4ca9563a0fe903191, type: 3}
       propertyPath: answerOptionUis.Array.data[0]
       value: 
       objectReference: {fileID: 4251015376447165351}

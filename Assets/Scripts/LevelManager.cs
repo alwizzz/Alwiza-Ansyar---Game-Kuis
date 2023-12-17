@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private TransitoryData transitoryDataReference;
     [SerializeField] private LevelPack levelPack;
     [SerializeField] private int questionIndex;
 
@@ -27,8 +28,21 @@ public class LevelManager : MonoBehaviour
             playerProgressData.Save();
         }
 
-        questionIndex = -1;
+        FetchTransitoryData();
         NextQuestion();
+    }
+
+    private void FetchTransitoryData()
+    {
+        if(transitoryDataReference.currentLevelPack == null)
+        {
+            print("Error on Transitory Data");
+            questionIndex = -1;
+            return;
+        }
+
+        levelPack = transitoryDataReference.currentLevelPack;
+        questionIndex = transitoryDataReference.currentQuestionIndex - 1;
     }
 
     public void NextQuestion()
