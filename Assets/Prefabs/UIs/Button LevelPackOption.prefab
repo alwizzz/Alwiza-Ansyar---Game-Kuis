@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 4727914802112339621}
   levelPack: {fileID: 0}
-  button: {fileID: 0}
+  button: {fileID: 6626718021900821120}
 --- !u!222 &4081250337354056025
 CanvasRenderer:
   m_ObjectHideFlags: 0

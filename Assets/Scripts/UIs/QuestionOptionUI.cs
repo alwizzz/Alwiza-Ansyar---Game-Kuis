@@ -17,12 +17,6 @@ public class QuestionOptionUI : MonoBehaviour
 
     private void Start()
     {
-        /* 
-         * saya prefer mendapatkan komponen button menggunakan GetComponent
-         * karena semua gameobject dari script ini adalah sebuah UI Button
-         */
-        button = GetComponent<Button>();
-
         SubscribeEvents();
     }
 

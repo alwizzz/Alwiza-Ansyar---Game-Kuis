@@ -10,4 +10,11 @@ public class TransitoryData : ScriptableObject
 {
     public LevelPack currentLevelPack;
     public int currentQuestionIndex;
+
+    public bool onLosingFromGame;
+
+    public void SetOnLosingFromGame(bool value)
+    {
+        onLosingFromGame = value;
+    }
 }

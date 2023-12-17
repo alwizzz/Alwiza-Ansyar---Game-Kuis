@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private TransitoryData transitoryDataReference;
+    [SerializeField] private TransitoryData transitoryDataRef;
     [SerializeField] private LevelPack levelPack;
     [SerializeField] private int questionIndex;
 
@@ -34,15 +34,15 @@ public class LevelManager : MonoBehaviour
 
     private void FetchTransitoryData()
     {
-        if(transitoryDataReference.currentLevelPack == null)
+        if(transitoryDataRef.currentLevelPack == null)
         {
             print("Error on Transitory Data");
             questionIndex = -1;
             return;
         }
 
-        levelPack = transitoryDataReference.currentLevelPack;
-        questionIndex = transitoryDataReference.currentQuestionIndex - 1;
+        levelPack = transitoryDataRef.currentLevelPack;
+        questionIndex = transitoryDataRef.currentQuestionIndex - 1;
     }
 
     public void NextQuestion()

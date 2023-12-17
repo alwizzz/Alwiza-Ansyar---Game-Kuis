@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05b1f1d8775d3a438aa9cda10e5532d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitoryDataRef: {fileID: 11400000, guid: 6486058642db0524e906edf02611007e, type: 2}
   levelPacks:
   - {fileID: 11400000, guid: 4c8eda9c2818a594d9f51f3b23fc0c32, type: 2}
   - {fileID: 11400000, guid: 29810ad3b983ff843b5169827c29e29e, type: 2}
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6008ceaa6df3204eb96093c60adff10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitoryDataReference: {fileID: 11400000, guid: 6486058642db0524e906edf02611007e, type: 2}
+  transitoryDataRef: {fileID: 11400000, guid: 6486058642db0524e906edf02611007e, type: 2}
   currentSelectedLevelPack: {fileID: 0}
   questionOptionPrefab: {fileID: 3660926786129140505, guid: 96b3827e854024e44a2035c6a6783d33, type: 3}
   buttonsParent: {fileID: 1021163869}

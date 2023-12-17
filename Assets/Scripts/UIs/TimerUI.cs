@@ -16,7 +16,11 @@ public class TimerUI : MonoBehaviour
     }
 
     [SerializeField] private Slider timerSlider;
-    [SerializeField] private FlashMessageUI flashMessage;
+    //[SerializeField] private FlashMessageUI flashMessage;
+
+    // Event Management
+    public static event System.Action OnTimeRunsOut;
+
 
     private void Start()
     {
@@ -41,8 +45,10 @@ public class TimerUI : MonoBehaviour
             timeIsRunning = false;
             counter = 0f;
 
-            flashMessage.Message = "Waktu habis!";
-            flashMessage.gameObject.SetActive(true);
+            //flashMessage.Message = "Waktu habis!";
+            //flashMessage.gameObject.SetActive(true);
+
+            OnTimeRunsOut?.Invoke();
         }
     }
 }

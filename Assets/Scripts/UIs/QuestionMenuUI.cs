@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestionMenuUI : MonoBehaviour
 {
-    [SerializeField] private TransitoryData transitoryDataReference;
+    [SerializeField] private TransitoryData transitoryDataRef;
     [SerializeField] private LevelPack currentSelectedLevelPack;
     [SerializeField] private QuestionOptionUI questionOptionPrefab;
     [SerializeField] private RectTransform buttonsParent;
@@ -58,8 +58,8 @@ public class QuestionMenuUI : MonoBehaviour
 
     private void LoadGame(int index)
     {
-        transitoryDataReference.currentLevelPack = currentSelectedLevelPack;
-        transitoryDataReference.currentQuestionIndex = index;
+        transitoryDataRef.currentLevelPack = currentSelectedLevelPack;
+        transitoryDataRef.currentQuestionIndex = index;
 
 
         var sceneLoader = FindObjectOfType<SceneLoader>();

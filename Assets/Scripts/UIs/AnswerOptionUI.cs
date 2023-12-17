@@ -9,7 +9,10 @@ public class AnswerOptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI answerText;
     [SerializeField] private bool isCorrect;
 
-    [SerializeField] private FlashMessageUI flashMessage;
+    //[SerializeField] private FlashMessageUI flashMessage;
+
+    // Event Management
+    public static event System.Action<string, bool> OnChoosingAnswer;
 
     public void SetAnswerOption(string answerString, bool isCorrect)
     {
@@ -20,7 +23,8 @@ public class AnswerOptionUI : MonoBehaviour
     public void Choose()
     {
         //print($"Jawaban anda adalah {answerText.text} ({isCorrect})");
-        flashMessage.Message = $"Jawaban anda adalah {answerText.text} ({isCorrect})";
+        //flashMessage.Message = $"Jawaban anda adalah {answerText.text} ({isCorrect})";
 
+        OnChoosingAnswer?.Invoke(answerText.text, isCorrect);
     }
 }

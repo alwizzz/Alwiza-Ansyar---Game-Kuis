@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelPackMenuUI : MonoBehaviour
 {
+    [SerializeField] private TransitoryData transitoryDataRef;
     [SerializeField] private LevelPack[] levelPacks;
     [SerializeField] private LevelPackOptionUI levelPackOptionPrefab;
     [SerializeField] private RectTransform buttonsParent;
@@ -19,6 +20,13 @@ public class LevelPackMenuUI : MonoBehaviour
         GenerateOptionButtons();
 
         SubscribeEvents();
+
+        if(transitoryDataRef.onLosingFromGame)
+        {
+            // force choosing a level pack via script
+            transitoryDataRef.onLosingFromGame = false;
+            SetupQuestionMenu(transitoryDataRef.currentLevelPack);
+        }
     }
 
     private void GenerateOptionButtons()

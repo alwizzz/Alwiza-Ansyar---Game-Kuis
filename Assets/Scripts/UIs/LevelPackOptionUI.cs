@@ -17,12 +17,6 @@ public class LevelPackOptionUI : MonoBehaviour
 
     private void Start()
     {
-        /* 
-         * saya prefer mendapatkan komponen button menggunakan GetComponent
-         * karena semua gameobject dari script ini adalah sebuah UI Button
-         */
-        button = GetComponent<Button>();
-
         SubscribeEvents();
     }
 
@@ -43,6 +37,7 @@ public class LevelPackOptionUI : MonoBehaviour
     }
     private void UnsubscribeEvents()
     {
+        print("button is " + button);
         button.onClick.RemoveListener(Click);
     }
 
