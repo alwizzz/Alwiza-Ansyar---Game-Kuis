@@ -12,7 +12,8 @@ public class LevelPackMenuUI : MonoBehaviour
     [SerializeField] private RectTransform buttonsParent;
 
     [Header("Caches")]
-    [SerializeField] private QuestionMenuUI questionMenu; 
+    [SerializeField] private QuestionMenuUI questionMenu;
+    [SerializeField] private ChooseLevelMenuManager chooseLevelMenuManager;
 
 
     private void Start()
@@ -87,8 +88,15 @@ public class LevelPackMenuUI : MonoBehaviour
 
     private void OpenQuestionMenu(LevelPack levelPack)
     {
+        int levelProgress = chooseLevelMenuManager.GetLevelProgress(levelPack.name);
+        if(levelProgress == -1) // error code
+        {
+            print("ERROR");
+            return;
+        }
+
         questionMenu.gameObject.SetActive(true);
-        questionMenu.GenerateOptionButtons(levelPack);
+        questionMenu.GenerateOptionButtons(levelPack, levelProgress);
 
         gameObject.SetActive(false);
     }

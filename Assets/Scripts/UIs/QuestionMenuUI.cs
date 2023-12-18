@@ -14,7 +14,7 @@ public class QuestionMenuUI : MonoBehaviour
         SubscribeEvents();
     }
 
-    public void GenerateOptionButtons(LevelPack levelPack)
+    public void GenerateOptionButtons(LevelPack levelPack, int levelProgress)
     {
         RefreshContent();
 
@@ -24,7 +24,9 @@ public class QuestionMenuUI : MonoBehaviour
         {
             var questionOptionButton = Instantiate(questionOptionPrefab);
 
-            questionOptionButton.Setup(levelPack.GetQuestionDataByIndex(i));
+            var questionData = levelPack.GetQuestionDataByIndex(i);
+            var isLocked = (i < levelProgress ? false : true);
+            questionOptionButton.Setup(questionData, isLocked);
 
             // better approach
             questionOptionButton.transform.SetParent(buttonsParent, false);

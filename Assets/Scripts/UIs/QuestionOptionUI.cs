@@ -20,10 +20,18 @@ public class QuestionOptionUI : MonoBehaviour
         SubscribeEvents();
     }
 
-    public void Setup(QuestionData data)
+    public void Setup(QuestionData data, bool isLocked)
     {
         questionData = data;
         optionText.text = data.name;
+
+        if(isLocked)
+        {
+            button.interactable = false;
+        } else
+        {
+            button.interactable = true;
+        }
     }
 
     private void OnDestroy()

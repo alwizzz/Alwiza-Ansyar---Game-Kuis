@@ -33,4 +33,19 @@ public class ChooseLevelMenuManager : MonoBehaviour
         coinText.text = playerProgressData.data.coins.ToString();
     }
 
+    public int GetLevelProgress(string levelPackName)
+    {
+        int result;
+
+        if(playerProgressData.data.levelProgresses.ContainsKey(levelPackName))
+        {
+            result = playerProgressData.data.levelProgresses[levelPackName];
+        } else
+        {
+            result = -1; // error code
+        }
+
+        return result;
+    }
+
 }

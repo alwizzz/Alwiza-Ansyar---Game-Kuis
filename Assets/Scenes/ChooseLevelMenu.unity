@@ -448,6 +448,7 @@ MonoBehaviour:
   levelPackOptionPrefab: {fileID: 7702266694151807842, guid: 8a068c1d2d82b034d8c568c823482e85, type: 3}
   buttonsParent: {fileID: 846543690}
   questionMenu: {fileID: 296155987}
+  chooseLevelMenuManager: {fileID: 1853174862}
 --- !u!1 &296155985
 GameObject:
   m_ObjectHideFlags: 0
