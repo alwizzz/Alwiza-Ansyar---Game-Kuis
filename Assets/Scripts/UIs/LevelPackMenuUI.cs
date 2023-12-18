@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelPackMenuUI : MonoBehaviour
 {
     [SerializeField] private TransitoryData transitoryDataRef;
-    [SerializeField] private LevelPack[] levelPacks;
+    //[SerializeField] private LevelPack[] levelPacks;
     [SerializeField] private LevelPackOptionUI levelPackOptionPrefab;
     [SerializeField] private RectTransform buttonsParent;
 
@@ -17,7 +17,7 @@ public class LevelPackMenuUI : MonoBehaviour
 
     private void Start()
     {
-        GenerateOptionButtons();
+        //GenerateOptionButtons();
 
         SubscribeEvents();
 
@@ -32,7 +32,7 @@ public class LevelPackMenuUI : MonoBehaviour
 
                 // force choosing a level pack via script
                 transitoryDataRef.onLosingFromGame = false;
-                SetupQuestionMenu(transitoryDataRef.currentLevelPack);
+                OpenQuestionMenu(transitoryDataRef.currentLevelPack);
             }
         } else
         {
@@ -41,7 +41,7 @@ public class LevelPackMenuUI : MonoBehaviour
 
     }
 
-    private void GenerateOptionButtons()
+    public void GenerateOptionButtons(LevelPack[] levelPacks, PlayerProgressData.ProgressData data)
     {
         foreach(LevelPack lp in levelPacks)
         {
@@ -51,9 +51,14 @@ public class LevelPackMenuUI : MonoBehaviour
 
             // better approach
             levelPackOptionButton.transform.SetParent(buttonsParent, false);
-
-            //levelPackOptionButton.transform.parent = buttonsParent;
-            //levelPackOptionButton.transform.localScale = Vector3.one;
+            
+            if(data.levelProgresses.ContainsKey(lp.name))
+            {
+                levelPackOptionButton.Unlock();
+            } else
+            {
+                levelPackOptionButton.Lock();
+            }
         }
     }
 
@@ -65,15 +70,22 @@ public class LevelPackMenuUI : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        LevelPackOptionUI.OnClick += SetupQuestionMenu;
+        LevelPackOptionUI.OnClick += OpenLevelPack;
     }
     private void UnsubscribeEvents()
     {
-        LevelPackOptionUI.OnClick -= SetupQuestionMenu;
+        LevelPackOptionUI.OnClick -= OpenLevelPack;
+    }
+
+    private void OpenLevelPack(LevelPack levelPack, bool isLocked)
+    {
+        if(isLocked) { return; }
+
+        OpenQuestionMenu(levelPack);
     }
 
 
-    private void SetupQuestionMenu(LevelPack levelPack)
+    private void OpenQuestionMenu(LevelPack levelPack)
     {
         questionMenu.gameObject.SetActive(true);
         questionMenu.GenerateOptionButtons(levelPack);

@@ -20,8 +20,18 @@ public class PlayerProgressData : ScriptableObject
     public ProgressData data = new ProgressData();
     [SerializeField] private string fileName;
     [SerializeField] private bool usingBinaryFormatter;
+
+#if UNITY_EDITOR
     readonly private string DIR = Application.dataPath + "/Temporary/";
+#elif (UNITY_ANDROID || UNITY_IOS) // && !UNITY_EDITOR
+    readonly private string DIR = Application.persistentDataPath + "/Temporary/";
+#endif
+
     private string path;
+
+    [Header("Config")]
+    [SerializeField] private string initialLevelPack;
+    [SerializeField] private int initialCoin;
 
     public void Setup()
     {
@@ -77,7 +87,7 @@ public class PlayerProgressData : ScriptableObject
             return false;
         }
     }
-
+#region BinaryReader
     private bool LoadByBinaryReader(FileStream fileStream)
     {
         BinaryReader reader = new BinaryReader(fileStream);
@@ -95,6 +105,7 @@ public class PlayerProgressData : ScriptableObject
         reader.Dispose();
         return true;
     }
+#endregion
 
     public void Save()
     {
@@ -124,13 +135,19 @@ public class PlayerProgressData : ScriptableObject
     private void SaveByBinaryFormatter(FileStream fileStream)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        data.coins = 200;
-        data.levelProgresses.Add("LevelPackA", 3);
-        data.levelProgresses.Add("LevelPackB", 5);
+
+        // pada kasus kodingan saya lebih cocok cek null directory lewat jumlah isinya
+        if(data.levelProgresses.Count == 0)
+        {
+            data.coins = initialCoin;
+            // TODO: cek kalo initialLevelPack itu nama yg valid
+            data.levelProgresses.Add(initialLevelPack, 1);
+        }
 
         formatter.Serialize(fileStream, data);
     }
 
+#region BinaryWriter
     private void SaveByBinaryWriter(FileStream fileStream)
     {
         BinaryWriter writer = new BinaryWriter(fileStream);
@@ -144,6 +161,7 @@ public class PlayerProgressData : ScriptableObject
 
         writer.Dispose();
     }
+#endregion
 
 
 }

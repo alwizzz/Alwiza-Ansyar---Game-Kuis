@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MainData
   m_EditorClassIdentifier: 
   data:
-    coins: 220
+    coins: 200
   fileName: data.txt
   usingBinaryFormatter: 1
+  initialLevelPack: LevelPackA
+  initialCoin: 100

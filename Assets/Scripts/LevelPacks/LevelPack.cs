@@ -8,6 +8,7 @@ using UnityEngine;
 )]
 public class LevelPack : ScriptableObject
 {
+    [SerializeField] private int price;
     [SerializeField] private QuestionData[] questions = new QuestionData[0];
     public int totalQuestion => questions.Length;
 
@@ -16,4 +17,6 @@ public class LevelPack : ScriptableObject
     {
         return questions[index];
     }
+
+    public int GetPrice() => price;
 }
