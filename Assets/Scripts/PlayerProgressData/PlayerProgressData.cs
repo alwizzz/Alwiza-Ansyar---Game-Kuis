@@ -14,7 +14,7 @@ public class PlayerProgressData : ScriptableObject
     public struct ProgressData
     {
         public int coins;
-        public Dictionary<string, int> levelProgresses;
+        public Dictionary<string, int> progresses;
     }
 
     public ProgressData data = new ProgressData();
@@ -99,7 +99,7 @@ public class PlayerProgressData : ScriptableObject
             string key = reader.ReadString();
             int value = reader.ReadInt32();
 
-            data.levelProgresses.Add(key, value);
+            data.progresses.Add(key, value);
         }
 
         reader.Dispose();
@@ -110,9 +110,9 @@ public class PlayerProgressData : ScriptableObject
     public void Save()
     {
         // dummy data
-        if (data.levelProgresses == null)
+        if (data.progresses == null)
         {
-            data.levelProgresses = new();
+            data.progresses = new();
         }
 
         FileStream fileStream = File.Open(path, FileMode.Open);
@@ -137,11 +137,11 @@ public class PlayerProgressData : ScriptableObject
         BinaryFormatter formatter = new BinaryFormatter();
 
         // pada kasus kodingan saya lebih cocok cek null directory lewat jumlah isinya
-        if(data.levelProgresses.Count == 0)
+        if(data.progresses.Count == 0)
         {
             data.coins = initialCoin;
             // TODO: cek kalo initialLevelPack itu nama yg valid
-            data.levelProgresses.Add(initialLevelPack, 1);
+            data.progresses.Add(initialLevelPack, 1);
         }
 
         formatter.Serialize(fileStream, data);
@@ -153,7 +153,7 @@ public class PlayerProgressData : ScriptableObject
         BinaryWriter writer = new BinaryWriter(fileStream);
 
         writer.Write(data.coins);
-        foreach(KeyValuePair<string, int> kvp in data.levelProgresses)
+        foreach(KeyValuePair<string, int> kvp in data.progresses)
         {
             writer.Write(kvp.Key);
             writer.Write(kvp.Value);

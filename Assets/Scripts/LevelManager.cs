@@ -94,12 +94,12 @@ public class LevelManager : MonoBehaviour
 
     public void CorrectAnswer()
     {
-        int lastLevelProgress = playerProgressData.data.levelProgresses[levelPack.name];
+        int lastLevelProgress = playerProgressData.data.progresses[levelPack.name];
         if (questionIndex+2 > lastLevelProgress)
         {
             print("progressed to question " + (questionIndex + 2));
             playerProgressData.data.coins += coinReward;
-            playerProgressData.data.levelProgresses[levelPack.name] = questionIndex + 2;
+            playerProgressData.data.progresses[levelPack.name] = questionIndex + 2;
         
             SaveProgress();
         }

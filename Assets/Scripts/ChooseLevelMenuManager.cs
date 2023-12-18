@@ -37,9 +37,9 @@ public class ChooseLevelMenuManager : MonoBehaviour
     {
         int result;
 
-        if(playerProgressData.data.levelProgresses.ContainsKey(levelPackName))
+        if(playerProgressData.data.progresses.ContainsKey(levelPackName))
         {
-            result = playerProgressData.data.levelProgresses[levelPackName];
+            result = playerProgressData.data.progresses[levelPackName];
         } else
         {
             result = -1; // error code
@@ -51,7 +51,7 @@ public class ChooseLevelMenuManager : MonoBehaviour
     public void PurchaseLevelPack(LevelPack levelPack, LevelPackOptionUI levelPackOption)
     {
         playerProgressData.data.coins -= levelPack.GetPrice();
-        playerProgressData.data.levelProgresses.Add(levelPack.name, 1);
+        playerProgressData.data.progresses.Add(levelPack.name, 1);
 
         levelPackOption.Unlock();
 

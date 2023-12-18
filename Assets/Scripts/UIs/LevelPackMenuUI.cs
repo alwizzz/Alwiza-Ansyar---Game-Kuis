@@ -53,7 +53,7 @@ public class LevelPackMenuUI : MonoBehaviour
             // better approach
             levelPackOptionButton.transform.SetParent(buttonsParent, false);
             
-            if(data.levelProgresses.ContainsKey(lp.name))
+            if(data.progresses.ContainsKey(lp.name))
             {
                 levelPackOptionButton.Unlock();
             } else
