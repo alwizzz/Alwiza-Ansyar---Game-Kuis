@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9e44a719ebe0443b9a0dce60303bd4, type: 3}
   m_Name: LevelPackD
   m_EditorClassIdentifier: 
-  price: 300
+  price: 100
   questions:
   - {fileID: 11400000, guid: 0f9e243f2285c214fb0a9717c7908efc, type: 2}
   - {fileID: 11400000, guid: a1fd123268262ec4f8c24532557fbdde, type: 2}

@@ -92,10 +92,17 @@ public class LevelManager : MonoBehaviour
         sceneLoader.LoadChooseLevelMenuScene();
     }
 
-    public void AddCoinReward()
+    public void CorrectAnswer()
     {
-        print("hoy");
-        playerProgressData.data.coins += coinReward;
+        int lastLevelProgress = playerProgressData.data.levelProgresses[levelPack.name];
+        if (questionIndex+2 > lastLevelProgress)
+        {
+            print("progressed to question " + (questionIndex + 2));
+            playerProgressData.data.coins += coinReward;
+            playerProgressData.data.levelProgresses[levelPack.name] = questionIndex + 2;
+        
+            SaveProgress();
+        }
     }
 
     public void ResetLevel()
