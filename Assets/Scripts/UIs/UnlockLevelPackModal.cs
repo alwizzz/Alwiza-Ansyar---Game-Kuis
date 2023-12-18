@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+
 using TMPro;
 public class UnlockLevelPackModal : MonoBehaviour
 {
@@ -11,7 +15,17 @@ public class UnlockLevelPackModal : MonoBehaviour
     [SerializeField] private TextMeshProUGUI afterPurchaseText;
 
     [Header("Caches")]
+    [SerializeField] private ChooseLevelMenuManager chooseLevelMenuManager;
     [SerializeField] private LevelPack selectedLevelPack;
+    [SerializeField] private LevelPackOptionUI selectedLevelPackOption;
+    [SerializeField] private bool isHookingButton;
+    //[SerializeField] private EventSystem eventSystem;
+
+    /*
+     * NOTE: 
+     * Di sini saya menggunakan IPointerClickHandler untuk memudahkan saya mendapatkan akses LevelPackOptionUI
+     * mana yang perlu di Unlock() setelah proses pembelian level pack berhasil
+     */
 
     private void Start()
     {
@@ -20,7 +34,30 @@ public class UnlockLevelPackModal : MonoBehaviour
         purchaseConfirmationModal.SetActive(false);
         afterPurchaseModal.SetActive(false);
 
-        selectedLevelPack = null;
+        ResetCaches();
+    }
+
+    private void Update()
+    {
+        if(isHookingButton)
+        {
+            HookSelectedLevelPackOption();
+        }
+    }
+
+    private void HookSelectedLevelPackOption()
+    {
+        if (EventSystem.current == null) { return; }
+
+        var currentSelectedGameObject = EventSystem.current.currentSelectedGameObject;
+        if (currentSelectedGameObject == null) { return; }
+
+        selectedLevelPackOption = currentSelectedGameObject.GetComponent<LevelPackOptionUI>();
+        if (selectedLevelPackOption != null) 
+        { 
+            print("hooked a button!");
+            isHookingButton = false;
+        }
     }
 
     public void ShowPurchaseConfirmationModal()
@@ -67,20 +104,29 @@ public class UnlockLevelPackModal : MonoBehaviour
             return; 
         }
 
-        string message = "";
+        string message;
 
         if(playerProgressData.data.coins < selectedLevelPack.GetPrice())
         {
             message = "Pembelian gagal. Anda tidak memiliki koin yang cukup";
         } else
         {
-            //TODO proses pembelian
+            chooseLevelMenuManager.PurchaseLevelPack(selectedLevelPack, selectedLevelPackOption);
             message = "Pembelian berhasil.";
         }
 
-        selectedLevelPack = null;
+        ResetCaches();
+
         ShowAfterPurchaseModal(message);
 
+    }
+
+    public void ResetCaches()
+    {
+        selectedLevelPack = null;
+        selectedLevelPackOption = null;
+
+        isHookingButton = true;
     }
 
 }

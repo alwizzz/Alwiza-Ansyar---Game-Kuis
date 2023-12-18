@@ -28,7 +28,7 @@ public class ChooseLevelMenuManager : MonoBehaviour
         UpdateCoinText();
     }
 
-    public void UpdateCoinText()
+    private void UpdateCoinText()
     {
         coinText.text = playerProgressData.data.coins.ToString();
     }
@@ -46,6 +46,17 @@ public class ChooseLevelMenuManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void PurchaseLevelPack(LevelPack levelPack, LevelPackOptionUI levelPackOption)
+    {
+        playerProgressData.data.coins -= levelPack.GetPrice();
+        playerProgressData.data.levelProgresses.Add(levelPack.name, 1);
+
+        levelPackOption.Unlock();
+
+        playerProgressData.Save();
+        UpdateCoinText();
     }
 
 }
