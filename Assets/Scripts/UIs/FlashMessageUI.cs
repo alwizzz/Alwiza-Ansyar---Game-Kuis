@@ -8,6 +8,7 @@ public class FlashMessageUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI messageText;
     [SerializeField] private GameObject buttonsOnCorrectAnswer;
     [SerializeField] private GameObject buttonsOnWrongAnswer;
+    [SerializeField] private Animator animator;
 
 
     public string Message
@@ -64,7 +65,10 @@ public class FlashMessageUI : MonoBehaviour
             buttonsOnWrongAnswer.SetActive(true);
         }
 
-
+        
         gameObject.SetActive(true);
+
+        // menurut saya lebih cocok menggunakan trigger pada kasus ini
+        animator.SetTrigger((isCorrect ? "isCorrect" : "isWrong"));
     }
 }
