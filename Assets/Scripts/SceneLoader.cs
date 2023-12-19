@@ -20,14 +20,18 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadStartMenuScene()
     {
-        SceneManager.LoadScene(nameOfStartMenuScene);
+        AudioManager.instance.PlayBGM(0); // main bgm
+        SceneManager.LoadScene(nameOfStartMenuScene, LoadSceneMode.Single);
     }
     public void LoadChooseLevelMenuScene()
     {
-        SceneManager.LoadScene(nameOfChooseLevelMenuScene);
+        AudioManager.instance.PlayBGM(0); // main bgm
+        SceneManager.LoadScene(nameOfChooseLevelMenuScene, LoadSceneMode.Single);
     }
     public void LoadGameScene()
     {
-        SceneManager.LoadScene(nameOfGameScene);
+        AudioManager.instance.PlayBGM(1); // game bgm
+        SceneManager.LoadScene(nameOfGameScene, LoadSceneMode.Single);
     }
+
 }

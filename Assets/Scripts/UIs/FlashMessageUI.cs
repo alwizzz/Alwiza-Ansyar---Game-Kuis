@@ -10,6 +10,10 @@ public class FlashMessageUI : MonoBehaviour
     [SerializeField] private GameObject buttonsOnWrongAnswer;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private AudioClip correctSFX;
+    [SerializeField] private AudioClip wrongSFX;
+
+
 
     public string Message
     {
@@ -59,13 +63,17 @@ public class FlashMessageUI : MonoBehaviour
         {
             buttonsOnCorrectAnswer.SetActive(true);
             buttonsOnWrongAnswer.SetActive(false);
+
+            AudioManager.instance.PlaySFX(correctSFX);
         } else
         {
             buttonsOnCorrectAnswer.SetActive(false);
             buttonsOnWrongAnswer.SetActive(true);
+
+            AudioManager.instance.PlaySFX(wrongSFX);
         }
 
-        
+
         gameObject.SetActive(true);
 
         // menurut saya lebih cocok menggunakan trigger pada kasus ini
