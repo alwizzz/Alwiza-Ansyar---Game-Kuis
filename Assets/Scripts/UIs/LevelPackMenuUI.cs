@@ -10,6 +10,7 @@ public class LevelPackMenuUI : MonoBehaviour
     //[SerializeField] private LevelPack[] levelPacks;
     [SerializeField] private LevelPackOptionUI levelPackOptionPrefab;
     [SerializeField] private RectTransform buttonsParent;
+    [SerializeField] private Animator animator;
 
     [Header("Caches")]
     [SerializeField] private QuestionMenuUI questionMenu;
@@ -37,7 +38,7 @@ public class LevelPackMenuUI : MonoBehaviour
             }
         } else
         {
-            questionMenu.gameObject.SetActive(false);
+            //questionMenu.gameObject.SetActive(false);
         }
 
     }
@@ -95,10 +96,11 @@ public class LevelPackMenuUI : MonoBehaviour
             return;
         }
 
-        questionMenu.gameObject.SetActive(true);
         questionMenu.GenerateOptionButtons(levelPack, levelProgress);
 
-        gameObject.SetActive(false);
+        //questionMenu.gameObject.SetActive(true);
+        //gameObject.SetActive(false);
+        animator.SetTrigger("toQuestionsTrigger");
     }
 
 
