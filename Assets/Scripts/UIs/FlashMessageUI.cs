@@ -70,7 +70,7 @@ public class FlashMessageUI : MonoBehaviour
             buttonsOnCorrectAnswer.SetActive(false);
             buttonsOnWrongAnswer.SetActive(true);
 
-            AudioManager.instance.PlaySFX(wrongSFX);
+            AudioManager.instance.PlaySFX(wrongSFX); 
         }
 
 
